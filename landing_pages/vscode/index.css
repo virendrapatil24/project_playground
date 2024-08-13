@@ -1,0 +1,102 @@
+body {
+    background-color: #0e0e0e;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px; /* Optional: Set a default font size */
+    line-height: 1.6; /* Optional: Set a default line height for better readability */
+    color: #333; /* Optional: Set a default text color */
+}
+
+
+.topLink {
+    color : rgb(155, 163, 180);
+    cursor: pointer;
+    padding-left: 5px;
+    font-size: 16px;
+    height: 58px;
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    margin: 0px 88px;
+    height: 58px;
+    padding: 0px 40px;
+    font: 14px;
+}
+
+.navbar-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    height: 58px;
+}
+
+.navbar-collapse {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    height: 58px;
+    padding-left: 25px;
+    font-size: 16px;
+}
+
+.navbar-nav {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Arrange <li> elements in a row */
+}
+
+.navbar-left {
+    height: 100%;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-start; /* Align items to the left (default behavior) */
+    color : rgb(155, 163, 180)
+}
+
+.navbar-right {
+    height: 100%;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end; /* Align items to the right if needed */
+}
+
+.hero-content {
+    display: flex;
+    align-items: center;
+    margin: 40px 88px;
+}
+
+.hero-text {
+    height: 100%;
+    align-items: center;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.hero-image {
+    height: 100%;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.left-bar {
+    align-items: center;
+    height: 25px;
+}
