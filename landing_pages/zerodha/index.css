@@ -1,0 +1,77 @@
+.navbar {
+    margin: -8px;
+    box-sizing: border-box;
+    color: rgb(66, 66, 66);
+    /* border-bottom: 0.3px; */
+    /* border-style: solid; */
+    /* border-color: rgb(66, 66, 66); */
+    box-shadow : rgb(238, 238, 238) 2px 1px 2px 0px;
+}
+
+.container {
+    height: 70px;
+    margin: 0px 200px;
+    align-items: center;
+}
+
+.responsive-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.navbar-left {
+    align-items: center;
+    width: 423px;
+}
+
+.navbar-right {
+    align-items: center;
+    width: 623px;
+}
+
+.navbar-links {
+    list-style: none; /* Remove bullet points */
+    margin: 0; /* Remove default margin */
+    padding: 0; /* Remove default padding */
+    display: flex; /* Arrange <li> elements in a row */
+    justify-content: flex-end;
+    gap: 15px;
+}
+
+.small-links a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #666;
+    font-size: 14.4px;
+    font-weight: 400px;
+    font-family: Inter, serif;
+    cursor: pointer;
+  }
+
+.main-div {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-div-child {
+    max-width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    color: rgb(66, 66, 66);
+    font-family: Inter, serif;
+}
+
+.main-button {
+    padding: 10px 30px;
+    background-color: rgb(56, 126, 209);
+    color: rgb(255, 255, 255);
+    border-radius: 3px;
+    border-width: 1px;
+    font-size: 20px;
+    font-family: Inter, serif;
+    border-color: rgba(0, 0, 0, 0);
+}    
