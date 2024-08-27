@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="icon" href="static/assets/to-do-logo.jpg">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="to-do-app">
+            <h2>To-Do List <img src="static/assets/icon.png"/></h2>
+            <div class="row">
+                <input type="text" id="input-to-do" placeholder="Add you text">
+                <button onclick="addToDo()" >Add</button>
+            </div>
+            <ul id="to-do-list">
+            </ul>
+        </div>
+    </div>
+    <script src="script.js" />
+</body>
+</html>
+
