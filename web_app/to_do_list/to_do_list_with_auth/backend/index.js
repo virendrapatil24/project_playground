@@ -1,9 +1,11 @@
 const express = require("express");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const cors = require("cors");
 app = express();
 
-app.users(express.json());
+app.use(express.json());
+app.use(cors());
 
 users = [];
 todos = {};
@@ -58,5 +60,50 @@ app.post("/api/signin", async (req, res) => {
   if (!isPasswordValid) {
     return res.status(401).json({ message: "Incorrect Password!" });
   }
-  res.status(200).json({ message: "User signed in successfully", username });
+  const token = generateToken(username);
+  res.status(200).json({ message: "User signed in successfully", token });
+});
+
+app.get("/api/todos", authenticateToken, (req, res) => {
+  const { username } = req.user;
+
+  if (!todos[username])
+    return res.status(404).json({ message: "No TODOs found for this user." });
+
+  res.status(200).json(todos[username]);
+});
+
+app.post("/api/todos", authenticateToken, (req, res) => {
+  const { username } = req.user;
+  const { text } = req.body;
+
+  const todo = { id: currentIndex, text: text, done: false };
+  todos[username].push(todo);
+  currentIndex++;
+  res.status(201).json(todo);
+});
+
+app.put("/api/todo/:id", authenticateToken, (req, res) => {
+  const { username } = req.user;
+  const { id } = req.params;
+
+  const userTodos = todos[username];
+  const todo = userTodos.find((todo) => todo.id === parseInt(id));
+
+  if (!todo) return res.status(404).json({ message: "TODO not found" });
+
+  todo.done = !todo.done;
+  res.status(200).json(todo);
+});
+
+app.delete("/api/todo/:id", authenticateToken, (req, res) => {
+  const { username } = req.user;
+  const { id } = req.params;
+
+  todos[username] = todos[username].filter((todo) => todo.id !== parseInt(id));
+  res.status(200).json({ message: "TODO deleted" });
+});
+
+app.listen(3000, () => {
+  console.log("Backend is running on http://localhost:3000");
 });
