@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,16 +10,34 @@ import { Label } from "@radix-ui/react-label";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { useForm } from "react-hook-form";
 
 const SignUpPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm();
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
     navigate("/");
   };
 
+  const onSubmit = async (data: { username: string; password: string }) => {
+    try {
+      const response = await axios.post("http://localhost:3000/api/signup", {
+        username: data.username,
+        password: data.password,
+      });
+      const token = response.data.token;
+      localStorage.setItem("authToken", token);
+      navigate("/");
+    } catch (error) {
+      console.error("Sign up failed:", error);
+    }
+  };
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
@@ -29,7 +46,7 @@ const SignUpPage = () => {
           <CardDescription>
             Create a new account to get started.
           </CardDescription>
-          <form onSubmit={() => console.log("nothing")}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <CardContent className="space-y-4 p-0 pt-10">
               <div className="space-y-2">
                 <Label>Username</Label>
@@ -37,10 +54,13 @@ const SignUpPage = () => {
                   id="username"
                   type="text"
                   placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
+                  {...register("username", {
+                    required: true,
+                  })}
                 />
+                {errors.username && (
+                  <span className="text-red-600">username is required</span>
+                )}
               </div>
               <div className="space-y-2">
                 <Label>Password</Label>
@@ -48,15 +68,18 @@ const SignUpPage = () => {
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
+                  {...register("password", {
+                    required: true,
+                  })}
                 />
+                {errors.password && (
+                  <span className="text-red-600">password is required</span>
+                )}
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-2 p-0 pt-12">
-              <Button type="submit" className="w-full">
-                Sign Up
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Signing up..." : "Sign Up"}
               </Button>
               <div className="flex items-center justify-center w-full">
                 <span className="text-sm text-gray-500">
