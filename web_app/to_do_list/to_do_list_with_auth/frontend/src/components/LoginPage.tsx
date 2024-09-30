@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -11,11 +10,36 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Label } from "@radix-ui/react-label";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const LoginPage = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<{ username: string; password: string }>();
   const navigate = useNavigate();
+
+  const onSubmit = async (data: { username: string; password: string }) => {
+    try {
+      const response = await axios.post("http://localhost:3000/api/login", {
+        username: data.username,
+        password: data.password,
+      });
+      if (response.status === 200) {
+        const token = response.data.token;
+        localStorage.setItem("authToken", token);
+        navigate("/");
+      } else {
+        const message = response.data.message || "Something went wrong!";
+        alert(message);
+      }
+    } catch (error) {
+      console.error("Logging failed:", error);
+      alert("Login failed");
+    }
+  };
 
   const handleSignUpClick = () => {
     navigate("/signup");
@@ -29,10 +53,7 @@ const LoginPage = () => {
           <CardDescription>
             Enter your username and password to access your account
           </CardDescription>
-          <form
-            onSubmit={() => console.log("form submitted")}
-            className="pt-10"
-          >
+          <form onSubmit={handleSubmit(onSubmit)} className="pt-10">
             <CardContent className="space-y-4 p-0">
               <div className="space-y-2">
                 <Label htmlFor="username">Username</Label>
@@ -40,10 +61,11 @@ const LoginPage = () => {
                   id="username"
                   type="text"
                   placeholder="Enter your username"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  required
+                  {...register("username", { required: true })}
                 />
+                {errors.username && (
+                  <span className="text-red-600">username is required</span>
+                )}
               </div>
               <div className="space-y-2">
                 <Label>Password</Label>
@@ -51,15 +73,16 @@ const LoginPage = () => {
                   id="password"
                   type="password"
                   placeholder="Enter your password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
+                  {...register("password", { required: true })}
                 />
+                {errors.password && (
+                  <span className="text-red-600">password is required</span>
+                )}
               </div>
             </CardContent>
             <CardFooter className="flex flex-col space-y-2 p-0 pt-12">
-              <Button type="submit" className="w-full">
-                Log In
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
+                {isSubmitting ? "Logging In..." : "Log In"}
               </Button>
               <div className="flex items-center justify-center w-full">
                 <span className="text-sm text-gray-500">

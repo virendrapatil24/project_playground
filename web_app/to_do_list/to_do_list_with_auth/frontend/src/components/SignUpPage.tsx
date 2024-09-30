@@ -18,7 +18,7 @@ const SignUpPage = () => {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm();
+  } = useForm<{ username: string; password: string }>();
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -31,13 +31,20 @@ const SignUpPage = () => {
         username: data.username,
         password: data.password,
       });
-      const token = response.data.token;
-      localStorage.setItem("authToken", token);
-      navigate("/");
+      if (response.status === 200) {
+        const token = response.data.token;
+        localStorage.setItem("authToken", token);
+        navigate("/");
+      } else {
+        const message = response.data.message || "Something went wrong!";
+        alert(message);
+      }
     } catch (error) {
       console.error("Sign up failed:", error);
+      alert("Sign up failed");
     }
   };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <Card className="w-full max-w-md">
@@ -101,5 +108,4 @@ const SignUpPage = () => {
     </div>
   );
 };
-
 export default SignUpPage;
