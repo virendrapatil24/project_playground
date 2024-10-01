@@ -167,7 +167,11 @@ const ToDoPage = () => {
         </CardContent>
         <CardFooter>
           <p className="text-sm text-gray-500">
-            {todos.length} task{todos.length === 1 ? "" : "s"} remaining
+            {todos.filter((todo) => todo.done === false).length} task
+            {todos.filter((todo) => todo.done === false).length === 1
+              ? ""
+              : "s"}{" "}
+            remaining
           </p>
         </CardFooter>
       </Card>

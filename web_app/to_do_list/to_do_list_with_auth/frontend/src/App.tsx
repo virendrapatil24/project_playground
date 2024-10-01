@@ -8,6 +8,7 @@ import {
   Routes,
 } from "react-router-dom";
 import ToDoPage from "./components/ToDoPage";
+import LogoutPage from "./components/LogoutPage";
 
 const isAuthenticated = () => {
   return !!localStorage.getItem("authToken");
@@ -20,6 +21,11 @@ const App = () => {
     setIsUserLoggedIn(isAuthenticated);
   }, []);
 
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    setIsUserLoggedIn(false);
+  };
+
   return (
     <Router>
       <Routes>
@@ -27,8 +33,30 @@ const App = () => {
           path="/"
           element={isUserLoggedIn ? <ToDoPage /> : <Navigate to="/login" />}
         />
-        <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/signup"
+          element={
+            isUserLoggedIn ? (
+              <Navigate to="/" />
+            ) : (
+              <SignUpPage setIsUserLoggedIn={setIsUserLoggedIn} />
+            )
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            isUserLoggedIn ? (
+              <Navigate to="/" />
+            ) : (
+              <LoginPage setIsUserLoggedIn={setIsUserLoggedIn} />
+            )
+          }
+        />
+        <Route
+          path="/logout"
+          element={<LogoutPage onLogout={handleLogout} />}
+        />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

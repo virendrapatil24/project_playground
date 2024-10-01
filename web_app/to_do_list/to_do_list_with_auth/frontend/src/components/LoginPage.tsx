@@ -13,7 +13,11 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 
-const LoginPage = () => {
+interface LogInPageProps {
+  setIsUserLoggedIn: (status: boolean) => void;
+}
+
+const LoginPage = ({ setIsUserLoggedIn }: LogInPageProps) => {
   const {
     register,
     handleSubmit,
@@ -28,11 +32,10 @@ const LoginPage = () => {
         password: data.password,
       });
       if (response.status === 200) {
-        console.log("all okay 1");
         const token = response.data.token;
         localStorage.setItem("authToken", token);
+        setIsUserLoggedIn(true);
         navigate("/");
-        console.log("all okay 2");
       } else {
         const message = response.data.message || "Something went wrong!";
         alert(message);
