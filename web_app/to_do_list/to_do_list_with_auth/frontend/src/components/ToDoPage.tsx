@@ -14,6 +14,7 @@ import { Label } from "./ui/label";
 import { X } from "lucide-react";
 import axios from "axios";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 interface Todo {
   id: number;
@@ -36,6 +37,7 @@ const ToDoPage = () => {
     reset,
     formState: { errors },
   } = useForm<FormData>();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const tokenFromStorage = localStorage.getItem("authToken");
@@ -44,6 +46,10 @@ const ToDoPage = () => {
       fetchTodos(tokenFromStorage);
     }
   }, []);
+
+  const handleLogoutClick = () => {
+    navigate("/logout");
+  };
 
   const fetchTodos = async (token: string) => {
     try {
@@ -108,10 +114,13 @@ const ToDoPage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <Card className="w-full max-w-md">
+    <div className="flex justify-center min-h-screen bg-gray-100 pt-20">
+      <Card className="w-full max-w-md h-full">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">To-Do List</CardTitle>
+          <CardTitle className="flex justify-between  text-2xl font-bold">
+            <p>To-Do List</p>
+            <Button onClick={handleLogoutClick}>Log Out</Button>
+          </CardTitle>
           <CardDescription>Manage your task efficiently</CardDescription>
         </CardHeader>
         <CardContent>
@@ -119,7 +128,7 @@ const ToDoPage = () => {
             className="flex flex-col space-x-2 mb-4"
             onSubmit={handleSubmit(addTodo)}
           >
-            <div className="flex flex space-x-2">
+            <div className="flex space-x-2">
               <Input
                 id="text"
                 type="text"
