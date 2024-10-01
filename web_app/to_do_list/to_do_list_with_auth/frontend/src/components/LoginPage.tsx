@@ -28,9 +28,11 @@ const LoginPage = () => {
         password: data.password,
       });
       if (response.status === 200) {
+        console.log("all okay 1");
         const token = response.data.token;
         localStorage.setItem("authToken", token);
         navigate("/");
+        console.log("all okay 2");
       } else {
         const message = response.data.message || "Something went wrong!";
         alert(message);
