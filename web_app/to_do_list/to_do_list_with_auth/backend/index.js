@@ -47,7 +47,7 @@ app.post("/api/signup", async (req, res) => {
   res.status(200).json({ message: "User signed up successfully", token });
 });
 
-app.post("/api/signin", async (req, res) => {
+app.post("/api/login", async (req, res) => {
   const { username } = req.body;
   const { password } = req.body;
 
