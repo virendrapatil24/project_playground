@@ -8,7 +8,7 @@ const Screen1 = () => {
                 <div className='text-white text-2xl'><span className='text-green-400'>Webinar</span>.gg</div>
                 <div className='text-white text-2xl my-8 font-semibold'>Verify Your Age</div>
                 <InputBox placeholder="Your Birth Year" />
-                <Button disabled={true} onClick={() => console.log("lol")}>Continue</Button>
+                <Button disabled={false} onClick={() => console.log("does nothing")}>Continue</Button>
             </div>
         </div>
     )
