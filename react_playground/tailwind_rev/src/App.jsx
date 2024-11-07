@@ -1,5 +1,6 @@
 import './App.css'
 import Screen1 from './components/Screen1'
+import Screen2 from './components/Screen2'
 
 function App() {
 
@@ -15,7 +16,8 @@ function App() {
         <div className='md:col-span-2 col-span-10 bg-blue-800'>
           Hello Virendra Patil!!!
         </div> */}
-        <Screen1 />
+        {/* <Screen1 /> */}
+        <Screen2 />
       </div>
     </>
   )
