@@ -1,6 +1,7 @@
 import './App.css'
 import Screen1 from './components/Screen1'
 import Screen2 from './components/Screen2'
+import Screen3 from './components/Screen3'
 
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
           Hello Virendra Patil!!!
         </div> */}
         {/* <Screen1 /> */}
-        <Screen2 />
+        {/* <Screen2 /> */}
+        <Screen3 />
       </div>
     </>
   )
