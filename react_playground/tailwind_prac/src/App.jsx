@@ -9,7 +9,7 @@ function App() {
     <>
       <div className="flex h-screen bg-green-300">
         Hello
-        <Image width="w-80" height="h-80" src={profileImage} />
+        <Image width="w-80" height="h-80" src={profileImage} className="rounded-md" />
       </div>
     </>
   )

@@ -14,7 +14,7 @@ const Image = ({ src, alt, width = 'w-48', height = 'h-48', className }) => {
     };
 
     return (
-        <div className={`relative ${width} ${height} ${className}`}>
+        <div className={`relative ${width} ${height}`}>
             {!loaded && !hasError && (
                 <div className="flex items-center justify-center w-full h-full text-gray-500 bg-gray-200">
                     <span>Is Loading...</span>
@@ -25,7 +25,7 @@ const Image = ({ src, alt, width = 'w-48', height = 'h-48', className }) => {
                 alt={alt}
                 onLoad={handleImageLoad}
                 onError={handleImageError}
-                className="object-cover w-full h-full"
+                className={`object-cover w-full h-full ${className}`}
             />
         </div>
     )
