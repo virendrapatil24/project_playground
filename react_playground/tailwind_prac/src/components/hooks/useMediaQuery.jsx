@@ -11,4 +11,4 @@ export const useMediaQuery = (query) => {
     }, [matches, query])
 
     return matches;
-}
+};

@@ -8,21 +8,23 @@ import { UsersIcon } from "./icons/UsersIcon"
 import { BilingIcon } from "./icons/BilingIcon"
 import { SettingsIcon } from "./icons/SettingsIcon"
 import { createContext, useState } from "react"
-
+import { WidthSize } from "../App"
+import { useContext } from "react"
 
 const SideBarContext = createContext();
 
 const SideBar = () => {
     const [expanded, setExpanded] = useState(true);
+    const { isDesktop } = useContext(WidthSize)
 
     const handleExpandedClick = () => {
         setExpanded((prev) => !prev)
     };
 
     return (
-        <div className={` bg-gray-100 p-4 border-r-2 shadow-sm transition-all ease-in-out duration-500 ${expanded ? "min-w-72" : "min-w-18"}`}>
+        <div className={` bg-gray-100 p-4 border-r-2 shadow-sm transition-all ease-in-out duration-500 ${isDesktop ? "min-w-72" : "min-w-18"}`}>
             <div className="flex w-full justify-between items-center">
-                {expanded && (
+                {isDesktop && (
                     <Button>
                         <span className="text-white">Webinar<span className="text-green-700">.gg</span></span>
                     </Button>
