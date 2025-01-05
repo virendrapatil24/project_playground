@@ -28,3 +28,8 @@ class Manager {
 }
 let man_user = new Manager("Vre", 34);
 console.log(man_user.name);
+const teamLead = {
+    name: "harkirat",
+    startDate: new Date(),
+    department: "Software developer"
+};
