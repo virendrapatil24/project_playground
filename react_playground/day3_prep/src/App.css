@@ -1,0 +1,131 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Counter CSS */
+.counter__container {
+  padding: 12px;
+}
+
+.counter__container > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Timer CSS */
+
+.timer__title {
+  font-size: 50px;
+  margin: 0;
+}
+
+.countdown__label__container {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.countdown__time__container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 50px;
+}
+
+.countdown__time__container > input {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  outline: none;
+  text-align: center;
+  width: 60px;
+  border-radius: 12px;
+  padding: 12px 12px;
+}
+
+
+.countdown__button__container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Stopwatch CSS */
+
+.stopwatch__title {
+  font-size: 50px;
+  margin: 0;
+}
+
+/* To Do List CSS  */
+.todo__item__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* Toast CSS */
+.toast__message {
+  display: flex;
+  justify-content: space-between;
+  background-color: blue;
+  padding: 12px 12px;
+  min-width: 280px;
+  border-radius: 8px;
+  margin: 10px 0;
+}
+
+.info {
+  background-color: blue;
+}
+
+.success {
+  background-color: green;
+}
+
+.error {
+  background-color: red;
+}
+
+.toast__container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Recipe CSS */
+
+.recipe__container {
+  width: 500px;
+}
+
+.recipe__input {
+  width: 100%;
+  padding: 8px;
+}
+
+.recipes__list_container {
+ width: 100%;
+ text-align: start;
+ border: 2px solid grey;
+ padding: 8px;
+ max-height: 500px;
+ overflow-y: scroll;
+}
+
+.recipe__item:hover {
+  cursor: pointer;
+  background: grey;
+}
