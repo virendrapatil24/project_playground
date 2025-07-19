@@ -1,3 +1,9 @@
+"""
+Class: A blueprint or template for creating objects. It defines properties (attributes) and behaviors (methods).
+Object: An instance of a class. It has real values for the attributes defined in the class.
+"""
+
+
 # Defining a class
 class Animal:
     def __init__(self, name, species):
