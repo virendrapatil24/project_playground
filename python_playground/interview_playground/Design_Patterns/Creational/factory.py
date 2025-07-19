@@ -8,6 +8,7 @@ When to Use It
 - When your code needs to be open for extension but closed for modification (Open/Closed Principle)
 - When you want to decouple the object creation logic from business logic.
 
+Focus: Creates objects of a single type.
 """
 
 from abc import ABC, abstractmethod
