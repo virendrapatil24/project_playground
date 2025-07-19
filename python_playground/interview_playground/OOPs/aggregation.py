@@ -20,7 +20,7 @@ class Zoo:
         self.name = name
         self.animals = []
 
-    def add_animal(self, animal):
+    def add_animal(self, animal: Animal):
         self.animals.append(animal)
 
     def show_animals(self):
